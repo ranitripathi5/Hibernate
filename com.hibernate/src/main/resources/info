@@ -1,0 +1,54 @@
+@Entity - used to mark a class as an entity
+@Table  - used to change the table details
+@id    - used to mark a column as a id(primary key)
+@GeneratedValue - automatic creation of generated values using an internal sequence .
+@Column - used to specify column mappings , for example to change the column name in the associated table in database
+@Transient - tells hibernate not to save the field above which this ann is used
+@Temporal -  used over a date and is used to decide the format of the date to be saved.
+@Lob - to signify large object
+
+@OneToOne, @OneToMany ,@ManyToMany etc.
+
+difference between get() and load()
+
+get-throws null if object with given primary key not found
+load()-throws exception if object with given primary key is not found, unlike get it doesn't give null value.
+
+get()-can be used when user is not sure about existence of object
+load()- used when we are sure about existence of the object
+
+get()-session cache memory saves the object once get is called, when another get call is made for that object ,
+instead hitting database, session cache memory is hit. session cache can be cleared with clear().
+load()- unlike get, it doesn't hit database and doesn't save object in cache, instead
+it returns proxy in place , and hit database only when methods other than getId() is called on persistent or entity object.
+This is called lazy initialization. (proxy object - copy).
+
+
+
+?? lazy loading and eager loading
+
+lazy loading -  in lazy loading , associated data loads only when we explicitly call getter or setter methods
+eager loading -  it is design pattern in which data loading occurs on the spot.
+
+
+#Hibernate / Persistence lifecycle states
+
+Transient, Persistent , Detached, Removed.
+
+Transient State- When an Object is made and its fields are set , it's known to be in transient state of hibernate.
+Persistent state- When an object is given to session as Session.save(object), it's known to be in  persistent state.
+                    The object is taken to database and is persisted there.
+Detached State-  When session is closed , the object gets detached and is said to be in detached state.(its still in db)
+Removed State-  When object is with session but is deleted from db, its is known to be in detached state.
+
+
+cascading -Entities that use relationships often have dependencies on the existence of the
+            other entity in the relationship.
+            cascading helps to auto perform operations on dependent entities when performed on the
+            main entity it is dependent on.
+
+Caching- mechanism to enhance performance of application.
+         Cache is used to reduce the number of database queries.
+
+
+
